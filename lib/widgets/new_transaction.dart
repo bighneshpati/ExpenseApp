@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/widgets/chart_bar.dart';
 import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
@@ -16,7 +17,7 @@ class _NewTransactionState extends State<NewTransaction> {
   DateTime _selectedDate;
   void _submitData() {
     if (_amountController.text.isEmpty) {
-      return;
+      CircularProgressIndicator();
     }
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
@@ -92,13 +93,40 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
             ),
             FlatButton(
-              child: Text('Add Transaction'),
-              textColor: Colors.purple,
-              onPressed: _submitData,
-            ),
+                child: Text('Add Transaction'),
+                textColor: Colors.purple,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NEW()),
+                  );
+                }),
           ],
         ),
       ),
+    );
+  }
+}
+class 
+NEW extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Transaction Page",
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Text('Transaction succesfull'),
+            Icon(Icons.arrow_upward),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.white,
     );
   }
 }
